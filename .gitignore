@@ -1,0 +1,7 @@
+x11quake
+*.o
+*.bak
+*.swp
+*.save
+*.pak
+*.cfg
