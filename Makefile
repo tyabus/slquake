@@ -3,9 +3,9 @@ program_SRCS := $(wildcard src/*.c)
 program_OBJS := ${program_SRCS:.c=.o}
 program_LIBRARIES := X11 Xext m
 
-CFLAGS := -Wall -m32 -O2
+CFLAGS := -O2 -funsafe-loop-optimizations -fomit-frame-pointer -Wall -m32
 
-LDFLAGS += -lX11 -lXext -lm -m32
+LDFLAGS := -lX11 -lXext -lm -m32
 
 .PHONY: all clean
 
