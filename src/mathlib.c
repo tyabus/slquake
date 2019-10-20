@@ -154,12 +154,6 @@ void RotatePointAroundVector( vec3_t dst, const vec3_t dir, const vec3_t point, 
 
 float	anglemod(float a)
 {
-#if 0
-	if (a >= 0)
-		a -= 360*(int)(a/360);
-	else
-		a += 360*( 1 + (int)(-a/360) );
-#endif
 	a = (360.0/65536) * ((int)(a*(65536/360.0)) & 65535);
 	return a;
 }
@@ -191,19 +185,6 @@ int BoxOnPlaneSide (vec3_t emins, vec3_t emaxs, mplane_t *p)
 	float	dist1, dist2;
 	int		sides;
 
-#if 0	// this is done by the BOX_ON_PLANE_SIDE macro before calling this
-		// function
-// fast axial cases
-	if (p->type < 3)
-	{
-		if (p->dist <= emins[p->type])
-			return 1;
-		if (p->dist >= emaxs[p->type])
-			return 2;
-		return 3;
-	}
-#endif
-	
 // general case
 	switch (p->signbits)
 	{
@@ -244,33 +225,6 @@ dist2 = p->normal[0]*emaxs[0] + p->normal[1]*emaxs[1] + p->normal[2]*emaxs[2];
 		BOPS_Error ();
 		break;
 	}
-
-#if 0
-	int		i;
-	vec3_t	corners[2];
-
-	for (i=0 ; i<3 ; i++)
-	{
-		if (plane->normal[i] < 0)
-		{
-			corners[0][i] = emins[i];
-			corners[1][i] = emaxs[i];
-		}
-		else
-		{
-			corners[1][i] = emins[i];
-			corners[0][i] = emaxs[i];
-		}
-	}
-	dist = DotProduct (plane->normal, corners[0]) - plane->dist;
-	dist2 = DotProduct (plane->normal, corners[1]) - plane->dist;
-	sides = 0;
-	if (dist1 >= 0)
-		sides = 1;
-	if (dist2 < 0)
-		sides |= 2;
-
-#endif
 
 	sides = 0;
 	if (dist1 >= p->dist)

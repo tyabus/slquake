@@ -26,8 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #define MAXLEFTCLIPEDGES		100
 
-// !!! if these are changed, they must be changed in asm_draw.h too !!!
-#define FULLY_CLIPPED_CACHED	0x80000000
+#define FULLY_CLIPPED_CACHED		0x80000000
 #define FRAMECOUNT_MASK			0x7FFFFFFF
 
 unsigned int	cacheoffset;

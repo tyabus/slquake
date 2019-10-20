@@ -109,8 +109,6 @@ Draw_Init
 */
 void Draw_Init (void)
 {
-	int		i;
-
 	draw_chars = W_GetLumpName ("conchars");
 	draw_disc = W_GetLumpName ("disc");
 	draw_backtile = W_GetLumpName ("backtile");
@@ -548,23 +546,12 @@ void Draw_ConsoleBackground (int lines)
 	conback = Draw_CachePic ("gfx/conback.lmp");
 
 // hack the version number directly into the pic
-#ifdef _WIN32
-	sprintf (ver, "(WinQuake) %4.2f", (float)VERSION);
-	dest = conback->data + 320*186 + 320 - 11 - 8*strlen(ver);
-#elif defined(X11)
 	sprintf (ver, "(X11 Quake %2.2f) %4.2f", (float)X11_VERSION, (float)VERSION);
 	dest = conback->data + 320*186 + 320 - 11 - 8*strlen(ver);
-#elif defined(__linux__)
-	sprintf (ver, "(Linux Quake %2.2f) %4.2f", (float)LINUX_VERSION, (float)VERSION);
-	dest = conback->data + 320*186 + 320 - 11 - 8*strlen(ver);
-#else
-	dest = conback->data + 320 - 43 + 320*186;
-	sprintf (ver, "%4.2f", VERSION);
-#endif
 
 	for (x=0 ; x<strlen(ver) ; x++)
 		Draw_CharToConback (ver[x], dest+(x<<3));
-	
+
 // draw the pic
 	if (r_pixbytes == 1)
 	{

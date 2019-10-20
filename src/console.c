@@ -227,8 +227,8 @@ void Con_Init (void)
 	Q_memset (con_text, ' ', CON_TEXTSIZE);
 	con_linewidth = -1;
 	Con_CheckResize ();
-	
-	Con_Printf ("Console initialized.\n");
+
+	Con_Printf ("Console Initialized\n");
 
 //
 // register our commands
@@ -271,7 +271,7 @@ void Con_Print (char *txt)
 	int		c, l;
 	static int	cr;
 	int		mask;
-	
+
 	con_backscroll = 0;
 
 	if (txt[0] == 1)

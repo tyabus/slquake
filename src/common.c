@@ -27,7 +27,7 @@ static char     *largv[MAX_NUM_ARGVS + NUM_SAFE_ARGVS + 1];
 static char     *argvdummy = " ";
 
 static char     *safeargvs[NUM_SAFE_ARGVS] =
-	{"-stdvid", "-nolan", "-nosound", "-nocdaudio", "-nojoy", "-nomouse", "-dibonly"};
+	{"-nolan", "-nosound", "-nocdaudio", "-nomouse"};
 
 cvar_t  registered = {"registered","0"};
 cvar_t  cmdline = {"cmdline","0", false, true};
@@ -1010,7 +1010,6 @@ void COM_CheckRegistered (void)
 {
 	int             h;
 	unsigned short  check[128];
-	int                     i;
 
 	COM_OpenFile("gfx/pop.lmp", &h);
 	static_registered = 0;
@@ -1022,15 +1021,14 @@ void COM_CheckRegistered (void)
 
 	Sys_FileRead (h, check, sizeof(check));
 	COM_CloseFile (h);
-	
-	for (i=0 ; i<128 ; i++)
-		if (pop[i] != (unsigned short)BigShort (check[i]))
-			Sys_Error ("Corrupted data file.");
-	
+
 	Cvar_Set ("cmdline", com_cmdline);
-	Cvar_Set ("registered", "1");
-	static_registered = 1;
-	Con_Printf ("Playing registered version.\n");
+	if (h != -1)
+	{
+		Cvar_Set ("registered", "1");
+		static_registered = 1;
+		Con_Printf ("Playing registered version.\n");
+	}
 }
 
 

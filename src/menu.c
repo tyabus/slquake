@@ -94,11 +94,10 @@ qboolean	m_return_onerror;
 char		m_return_reason [32];
 
 #define StartingGame	(m_multiplayer_cursor == 1)
-#define JoiningGame		(m_multiplayer_cursor == 0)
+#define JoiningGame	(m_multiplayer_cursor == 0)
 #define SerialConfig	(m_net_cursor == 0)
 #define DirectConfig	(m_net_cursor == 1)
-#define	IPXConfig		(m_net_cursor == 2)
-#define	TCPIPConfig		(m_net_cursor == 3)
+#define	TCPIPConfig	(m_net_cursor == 3)
 
 void M_ConfigureNetSubsystem(void);
 
@@ -630,7 +629,7 @@ void M_MultiPlayer_Draw (void)
 
 	M_DrawTransPic (54, 32 + m_multiplayer_cursor * 20,Draw_CachePic( va("gfx/menudot%i.lmp", f+1 ) ) );
 
-	if (serialAvailable || ipxAvailable || tcpipAvailable)
+	if (serialAvailable || tcpipAvailable)
 		return;
 	M_PrintWhite ((320/2) - ((27*8)/2), 148, "No Communications Available");
 }
@@ -661,12 +660,12 @@ void M_MultiPlayer_Key (int key)
 		switch (m_multiplayer_cursor)
 		{
 		case 0:
-			if (serialAvailable || ipxAvailable || tcpipAvailable)
+			if (serialAvailable || tcpipAvailable)
 				M_Menu_Net_f ();
 			break;
 
 		case 1:
-			if (serialAvailable || ipxAvailable || tcpipAvailable)
+			if (serialAvailable || tcpipAvailable)
 				M_Menu_Net_f ();
 			break;
 
@@ -942,10 +941,7 @@ void M_Net_Draw (void)
 		M_DrawTransPic (72, f, p);
 
 	f += 19;
-	if (ipxAvailable)
-		p = Draw_CachePic ("gfx/netmen3.lmp");
-	else
-		p = Draw_CachePic ("gfx/dim_ipx.lmp");
+	p = Draw_CachePic ("gfx/dim_ipx.lmp");
 	M_DrawTransPic (72, f, p);
 
 	f += 19;
@@ -1027,7 +1023,7 @@ again:
 		goto again;
 	if (m_net_cursor == 1 && !serialAvailable)
 		goto again;
-	if (m_net_cursor == 2 && !ipxAvailable)
+	if (m_net_cursor == 2)
 		goto again;
 	if (m_net_cursor == 3 && !tcpipAvailable)
 		goto again;
@@ -1163,12 +1159,6 @@ void M_DrawSlider (int x, int y, float range)
 
 void M_DrawCheckbox (int x, int y, int on)
 {
-#if 0
-	if (on)
-		M_DrawCharacter (x, y, 131);
-	else
-		M_DrawCharacter (x, y, 129);
-#endif
 	if (on)
 		M_Print (x, y, "on");
 	else
@@ -2223,18 +2213,14 @@ void M_LanConfig_Draw (void)
 		startJoin = "New Game";
 	else
 		startJoin = "Join Game";
-	if (IPXConfig)
-		protocol = "IPX";
-	else
-		protocol = "TCP/IP";
+
+	protocol = "TCP/IP";
+
 	M_Print (basex, 32, va ("%s - %s", startJoin, protocol));
 	basex += 8;
 
 	M_Print (basex, 52, "Address:");
-	if (IPXConfig)
-		M_Print (basex+9*8, 52, my_ipx_address);
-	else
-		M_Print (basex+9*8, 52, my_tcpip_address);
+	M_Print (basex+9*8, 52, my_tcpip_address);
 
 	M_Print (basex, lanConfig_cursor_table[0], "Port");
 	M_DrawTextBox (basex+8*8, lanConfig_cursor_table[0]-8, 6, 1);
@@ -3226,6 +3212,6 @@ void M_ConfigureNetSubsystem(void)
 		Cbuf_AddText ("com1 enable\n");
 	}
 
-	if (IPXConfig || TCPIPConfig)
+	if (TCPIPConfig)
 		net_hostport = lanConfig_port;
 }

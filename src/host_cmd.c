@@ -42,7 +42,7 @@ void Host_Quit_f (void)
 		return;
 	}
 	CL_Disconnect ();
-	Host_ShutdownServer(false);		
+	Host_ShutdownServer(false);
 
 	Sys_Quit ();
 }
@@ -74,12 +74,11 @@ void Host_Status_f (void)
 	else
 		print = SV_ClientPrintf;
 
-	print ("host:    %s\n", Cvar_VariableString ("hostname"));
+	print ("hostname: %s\n", Cvar_VariableString ("hostname"));
 	print ("version: %4.2f\n", VERSION);
 	if (tcpipAvailable)
 		print ("tcp/ip:  %s\n", my_tcpip_address);
-	if (ipxAvailable)
-		print ("ipx:     %s\n", my_ipx_address);
+		print ("port:    %u\n", net_hostport);
 	print ("map:     %s\n", sv.name);
 	print ("players: %i active (%i max)\n\n", net_activeconnections, svs.maxclients);
 	for (j=0, client = svs.clients ; j<svs.maxclients ; j++, client++)
@@ -1274,7 +1273,7 @@ Host_Give_f
 void Host_Give_f (void)
 {
 	char	*t;
-	int		v, w;
+	int	v;
 	eval_t	*val;
 
 	if (cmd_source == src_command)

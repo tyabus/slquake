@@ -166,27 +166,6 @@ SV_Accelerate
 */
 cvar_t	sv_maxspeed = {"sv_maxspeed", "320", false, true};
 cvar_t	sv_accelerate = {"sv_accelerate", "10"};
-#if 0
-void SV_Accelerate (vec3_t wishvel)
-{
-	int			i;
-	float		addspeed, accelspeed;
-	vec3_t		pushvec;
-
-	if (wishspeed == 0)
-		return;
-
-	VectorSubtract (wishvel, velocity, pushvec);
-	addspeed = VectorNormalize (pushvec);
-
-	accelspeed = sv_accelerate.value*host_frametime*addspeed;
-	if (accelspeed > addspeed)
-		accelspeed = addspeed;
-	
-	for (i=0 ; i<3 ; i++)
-		velocity[i] += accelspeed*pushvec[i];	
-}
-#endif
 void SV_Accelerate (void)
 {
 	int			i;
@@ -199,16 +178,16 @@ void SV_Accelerate (void)
 	accelspeed = sv_accelerate.value*host_frametime*wishspeed;
 	if (accelspeed > addspeed)
 		accelspeed = addspeed;
-	
+
 	for (i=0 ; i<3 ; i++)
-		velocity[i] += accelspeed*wishdir[i];	
+		velocity[i] += accelspeed*wishdir[i];
 }
 
 void SV_AirAccelerate (vec3_t wishveloc)
 {
 	int			i;
 	float		addspeed, wishspd, accelspeed, currentspeed;
-		
+
 	wishspd = VectorNormalize (wishveloc);
 	if (wishspd > 30)
 		wishspd = 30;

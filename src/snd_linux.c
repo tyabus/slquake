@@ -53,7 +53,6 @@ qboolean SNDDMA_Init(void)
     if (audio_fd < 0)
 	{
 		perror("/dev/dsp");
-        Con_Printf("Could not open /dev/dsp\n");
 		return 0;
 	}
 
@@ -69,7 +68,7 @@ qboolean SNDDMA_Init(void)
 	if (ioctl(audio_fd, SNDCTL_DSP_GETCAPS, &caps)==-1)
 	{
 		perror("/dev/dsp");
-        Con_Printf("Sound driver too old\n");
+        	Con_Printf("Sound driver is too old\n");
 		close(audio_fd);
 		return 0;
 	}
@@ -82,14 +81,14 @@ qboolean SNDDMA_Init(void)
 	}
 
     if (ioctl(audio_fd, SNDCTL_DSP_GETOSPACE, &info)==-1)
-    {   
+    {
         perror("GETOSPACE");
 		Con_Printf("Um, can't do GETOSPACE?\n");
 		close(audio_fd);
 		return 0;
     }
-    
-	shm = &sn;
+
+    shm = &sn;
     shm->splitbuffer = 0;
 
 // set sample bits & speed
