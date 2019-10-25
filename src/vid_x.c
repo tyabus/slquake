@@ -19,9 +19,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // vid_x.c -- general x video driver
 
-#define _BSD
-
-
 #include <ctype.h>
 #include <sys/time.h>
 #include <sys/types.h>
@@ -928,12 +925,9 @@ void GetEvent(void)
 
 // flushes the given rectangles from the view buffer to the screen
 
-void	VID_Update (vrect_t *rects)
+void VID_Update (vrect_t *rects)
 {
-	vrect_t full;
-
-// if the window changes dimension, skip this frame
-
+	// if the window changes dimension, skip this frame
 	if (config_notify)
 	{
 		fprintf(stderr, "config notify\n");

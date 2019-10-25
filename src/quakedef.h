@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define	QUAKE_GAME			// as opposed to utilities
 
 #define	VERSION			1.09
-#define	X11_VERSION		1.00
+#define	X11_VERSION		1.01
 
 //#define	PARANOID		// speed sapping error checking
 
@@ -49,18 +49,6 @@ void	VID_UnlockBuffer (void);
 #define	VID_LockBuffer()
 #define	VID_UnlockBuffer()
 
-#endif
-
-#if defined __i386__
-#define id386	0
-#else
-#define id386	0
-#endif
-
-#if id386
-#define UNALIGNED_OK	1	// set to 0 if unaligned accesses are not supported
-#else
-#define UNALIGNED_OK	0
 #endif
 
 #define CACHE_SIZE	32		// used to align key data structures

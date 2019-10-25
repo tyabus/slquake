@@ -45,8 +45,6 @@ void D_StartParticles (void)
 }
 
 
-#if	!id386
-
 /*
 ==============
 D_DrawParticle
@@ -65,7 +63,7 @@ void D_DrawParticle (particle_t *pparticle)
 
 	transformed[0] = DotProduct(local, r_pright);
 	transformed[1] = DotProduct(local, r_pup);
-	transformed[2] = DotProduct(local, r_ppn);		
+	transformed[2] = DotProduct(local, r_ppn);
 
 	if (transformed[2] < PARTICLE_Z_CLIP)
 		return;
@@ -202,6 +200,4 @@ void D_DrawParticle (particle_t *pparticle)
 		break;
 	}
 }
-
-#endif	// !id386
 

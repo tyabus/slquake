@@ -155,9 +155,6 @@ void R_BeginEdgeFrame (void)
 	}
 }
 
-
-#if	!id386
-
 /*
 ==============
 R_InsertNewEdges
@@ -199,11 +196,6 @@ addedge:
 	} while ((edgestoadd = next_edge) != NULL);
 }
 
-#endif	// !id386
-	
-
-#if	!id386
-
 /*
 ==============
 R_RemoveEdges
@@ -218,11 +210,6 @@ void R_RemoveEdges (edge_t *pedge)
 		pedge->prev->next = pedge->next;
 	} while ((pedge = pedge->nextremove) != NULL);
 }
-
-#endif	// !id386
-
-
-#if	!id386
 
 /*
 ==============
@@ -288,9 +275,6 @@ pushback:
 			return;
 	}
 }
-
-#endif	// !id386
-
 
 /*
 ==============
@@ -447,8 +431,6 @@ void R_TrailingEdge (surf_t *surf, edge_t *edge)
 	}
 }
 
-
-#if	!id386
 
 /*
 ==============
@@ -613,9 +595,6 @@ void R_GenerateSpans (void)
 
 	R_CleanupSpan ();
 }
-
-#endif	// !id386
-
 
 /*
 ==============
