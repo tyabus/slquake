@@ -399,10 +399,6 @@ Hunk_AllocName
 void *Hunk_AllocName (int size, char *name)
 {
 	hunk_t	*h;
-	
-#ifdef PARANOID
-	Hunk_Check ();
-#endif
 
 	if (size < 0)
 		Sys_Error ("Hunk_Alloc: bad size: %i", size);
@@ -491,10 +487,6 @@ void *Hunk_HighAllocName (int size, char *name)
 		Hunk_FreeToHighMark (hunk_tempmark);
 		hunk_tempactive = false;
 	}
-
-#ifdef PARANOID
-	Hunk_Check ();
-#endif
 
 	size = sizeof(hunk_t) + ((size+15)&~15);
 

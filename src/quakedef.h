@@ -24,8 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define	VERSION			1.09
 #define	SL_VERSION		1.02
 
-//#define	PARANOID		// speed sapping error checking
-
 #define	GAMENAME	"id1"		// directory to look in by default
 
 #include <math.h>

@@ -941,10 +941,6 @@ void M_Net_Draw (void)
 		M_DrawTransPic (72, f, p);
 
 	f += 19;
-	p = Draw_CachePic ("gfx/dim_ipx.lmp");
-	M_DrawTransPic (72, f, p);
-
-	f += 19;
 	if (tcpipAvailable)
 		p = Draw_CachePic ("gfx/netmen4.lmp");
 	else
@@ -1384,7 +1380,7 @@ void M_UnbindCommand (char *command)
 
 void M_Keys_Draw (void)
 {
-	int		i, l;
+	int		i;
 	int		keys[2];
 	char	*name;
 	int		x, y;
@@ -1404,8 +1400,6 @@ void M_Keys_Draw (void)
 		y = 48 + 8*i;
 
 		M_Print (16, y, bindnames[i][1]);
-
-		l = strlen (bindnames[i][0]);
 
 		M_FindKeysForCommand (bindnames[i][0], keys);
 

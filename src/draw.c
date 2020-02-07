@@ -143,13 +143,6 @@ void Draw_Character (int x, int y, int num)
 	if (y <= -8)
 		return;			// totally off screen
 
-#ifdef PARANOID
-	if (y > vid.height - 8 || x < 0 || x > vid.width - 8)
-		Sys_Error ("Con_DrawCharacter: (%i, %i)", x, y);
-	if (num < 0 || num > 255)
-		Sys_Error ("Con_DrawCharacter: char %i", num);
-#endif
-
 	row = num>>4;
 	col = num&15;
 	source = draw_chars + (row<<10) + (col<<3);
