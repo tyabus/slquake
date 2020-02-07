@@ -316,10 +316,13 @@ int main (int c, char **v)
 	Sys_Init();
 
 	if (COM_CheckParm("-nostdout"))
+	{
 		nostdout = 1;
-	else {
+	}
+	else
+	{
 		fcntl(0, F_SETFL, fcntl (0, F_GETFL, 0) | FNDELAY);
-		printf ("X11Quake -- Version %0.3f\n", X11_VERSION);
+		printf ("SLQuake -- Version %0.3f\n", SL_VERSION);
 	}
 
     oldtime = Sys_FloatTime () - 0.1;

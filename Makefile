@@ -1,8 +1,8 @@
-program_NAME := x11quake
+program_NAME := slquake
 program_SRCS := $(wildcard src/*.c)
 program_OBJS := ${program_SRCS:.c=.o}
 
-CFLAGS := -O2 -funsafe-loop-optimizations -fomit-frame-pointer -Wall -m32
+CFLAGS := -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer -Wall -m32
 
 LDFLAGS := -lX11 -lXext -lm -m32
 
