@@ -517,7 +517,6 @@ static void Test_Poll(void)
 	int		colors;
 	int		frags;
 	int		connectTime;
-	byte	playerNumber;
 
 	net_landriverlevel = testDriver;
 
@@ -542,7 +541,6 @@ static void Test_Poll(void)
 		if (MSG_ReadByte() != CCREP_PLAYER_INFO)
 			Sys_Error("Unexpected repsonse to Player Info request\n");
 
-		playerNumber = MSG_ReadByte();
 		Q_strcpy(name, MSG_ReadString());
 		colors = MSG_ReadLong();
 		frags = MSG_ReadLong();
