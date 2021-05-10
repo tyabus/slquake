@@ -2,9 +2,13 @@ program_NAME := slquake
 program_SRCS := $(wildcard src/*.c)
 program_OBJS := ${program_SRCS:.c=.o}
 
-CFLAGS := -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer -Wall -m32
+CFLAGS := -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer -Wall
+LDFLAGS := -lX11 -lXext -lm
 
-LDFLAGS := -lX11 -lXext -lm -m32
+ifneq ($(64BIT),1)
+	LDFLAGS += -m32
+	CFLAGS += -m32
+endif
 
 .PHONY: all clean
 
