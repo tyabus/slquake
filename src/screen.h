@@ -48,7 +48,7 @@ extern	qboolean	scr_skipupdate;
 extern	cvar_t		scr_viewsize;
 
 extern cvar_t scr_viewsize;
-extern cvar_t scr_drawfps;
+extern cvar_t scr_showfps;
 
 // only the refresh window will be updated unless these variables are flagged 
 extern	int			scr_copytop;

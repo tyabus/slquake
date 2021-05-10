@@ -34,11 +34,11 @@ cvar_t		scr_viewsize = {"viewsize","100", true};
 cvar_t		scr_fov = {"fov","90"};	// 10 - 170
 cvar_t		scr_conspeed = {"scr_conspeed","300"};
 cvar_t		scr_centertime = {"scr_centertime","2"};
-cvar_t		scr_showram = {"showram","1"};
-cvar_t		scr_showturtle = {"showturtle","0"};
-cvar_t		scr_showpause = {"showpause","1"};
+cvar_t		scr_showram = {"scr_showram","1"};
+cvar_t		scr_showturtle = {"scr_showturtle","0"};
+cvar_t		scr_showpause = {"scr_showpause","1"};
 cvar_t		scr_printspeed = {"scr_printspeed","8"};
-cvar_t          scr_drawfps = {"scr_drawfps","0"};
+cvar_t          scr_showfps = {"scr_showfps","0"};
 
 qboolean	scr_initialized;		// ready to draw
 
@@ -322,7 +322,7 @@ void SCR_Init (void)
 	Cvar_RegisterVariable (&scr_showpause);
 	Cvar_RegisterVariable (&scr_centertime);
 	Cvar_RegisterVariable (&scr_printspeed);
-	Cvar_RegisterVariable (&scr_drawfps);
+	Cvar_RegisterVariable (&scr_showfps);
 
 //
 // register our commands
@@ -715,7 +715,7 @@ void SCR_DrawFPS (void)
 	static  double  lastframetime;
 	extern  int     fps_count;
 
-	if (!scr_drawfps.value)
+	if (!scr_showfps.value)
 		return;
 
 	t = Sys_FloatTime ();
