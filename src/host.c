@@ -47,6 +47,8 @@ int			host_hunklevel;
 
 int			minimum_memory;
 
+int		fps_count;
+
 client_t	*host_client;			// current client
 
 jmp_buf 	host_abortserver;
@@ -667,6 +669,7 @@ void _Host_Frame (float time)
 	}
 	
 	host_framecount++;
+	fps_count++;
 }
 
 void Host_Frame (float time)

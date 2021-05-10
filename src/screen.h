@@ -23,7 +23,6 @@ void SCR_Init (void);
 
 void SCR_UpdateScreen (void);
 
-
 void SCR_SizeUp (void);
 void SCR_SizeDown (void);
 void SCR_BringDownConsole (void);
@@ -31,6 +30,8 @@ void SCR_CenterPrint (char *str);
 
 void SCR_BeginLoadingPlaque (void);
 void SCR_EndLoadingPlaque (void);
+
+void SCR_DrawFPS (void);
 
 int SCR_ModalMessage (char *text);
 
@@ -47,6 +48,7 @@ extern	qboolean	scr_skipupdate;
 extern	cvar_t		scr_viewsize;
 
 extern cvar_t scr_viewsize;
+extern cvar_t scr_drawfps;
 
 // only the refresh window will be updated unless these variables are flagged 
 extern	int			scr_copytop;

@@ -38,6 +38,7 @@ cvar_t		scr_showram = {"showram","1"};
 cvar_t		scr_showturtle = {"showturtle","0"};
 cvar_t		scr_showpause = {"showpause","1"};
 cvar_t		scr_printspeed = {"scr_printspeed","8"};
+cvar_t          scr_drawfps = {"scr_drawfps","0"};
 
 qboolean	scr_initialized;		// ready to draw
 
@@ -321,6 +322,7 @@ void SCR_Init (void)
 	Cvar_RegisterVariable (&scr_showpause);
 	Cvar_RegisterVariable (&scr_centertime);
 	Cvar_RegisterVariable (&scr_printspeed);
+	Cvar_RegisterVariable (&scr_drawfps);
 
 //
 // register our commands
@@ -686,7 +688,7 @@ void SCR_BeginLoadingPlaque (void)
 }
 
 /*
-===============
+================
 SCR_EndLoadingPlaque
 
 ================
@@ -696,6 +698,38 @@ void SCR_EndLoadingPlaque (void)
 	scr_disabled_for_loading = false;
 	scr_fullupdate = 0;
 	Con_ClearNotify ();
+}
+
+/*
+================
+SCR_DrawFPS
+
+================
+*/
+void SCR_DrawFPS (void)
+{
+	int             x, y;
+	char            str[80];
+	float           t;
+	static  float   lastfps;
+	static  double  lastframetime;
+	extern  int     fps_count;
+
+	if (!scr_drawfps.value)
+		return;
+
+	t = Sys_FloatTime ();
+	if ((t - lastframetime) >= 1.0)
+	{
+		lastfps = fps_count / (t - lastframetime);
+		fps_count = 0;
+		lastframetime = t;
+	}
+
+	sprintf(str, "%3.1f FPS", lastfps); // FS
+	x = vid.width - strlen(str) * 8 - 16;
+	y = vid.height - sb_lines - 8;
+	Draw_String (x, y, str);
 }
 
 //=============================================================================
@@ -927,6 +961,7 @@ void SCR_UpdateScreen (void)
 		SCR_DrawNet ();
 		SCR_DrawTurtle ();
 		SCR_DrawPause ();
+		SCR_DrawFPS ();
 		SCR_CheckDrawCenterString ();
 		Sbar_Draw ();
 		SCR_DrawConsole ();
