@@ -2,8 +2,14 @@ program_NAME := slquake
 program_SRCS := $(wildcard src/*.c)
 program_OBJS := ${program_SRCS:.c=.o}
 
-CFLAGS := -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer -Wall
+CFLAGS := -Wall
 LDFLAGS := -lX11 -lXext -lm
+
+ifneq ($(DEBUG),1)
+	CFLAGS += -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer
+else
+	CFLAGS += -O0 -g -ggdb
+endif
 
 ifneq ($(64BIT),1)
 	LDFLAGS += -m32
