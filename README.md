@@ -4,7 +4,8 @@
 ## Packages required (ubuntu/debian)
 
 For i386:
-libx11-dev libxext-dev
+libsdl1.2-dev
 
 For amd64:
-linux-libc-dev:i386 gcc-multilib libx11-dev:i386 libxext-dev:i386
+linux-libc-dev:i386 gcc-multilib libsdl1.2-dev:i386
+
