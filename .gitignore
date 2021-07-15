@@ -1,7 +1,10 @@
 slquake
+
 *.o
+*.dat
 *.bak
 *.swp
 *.save
 *.pak
 *.cfg
+
