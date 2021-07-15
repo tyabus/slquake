@@ -397,6 +397,11 @@ CL_InitInput
 */
 void CL_InitInput (void)
 {
+	if(mouse_avail)
+	{
+		IN_MLookDown();
+	}
+
 	Cmd_AddCommand ("+moveup",IN_UpDown);
 	Cmd_AddCommand ("-moveup",IN_UpUp);
 	Cmd_AddCommand ("+movedown",IN_DownDown);

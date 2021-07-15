@@ -19,7 +19,8 @@ byte    *VGA_pagebase;
 
 static SDL_Surface *screen = NULL;
 
-static qboolean mouse_avail;
+extern qboolean mouse_avail;
+
 static float   mouse_x, mouse_y;
 static int mouse_oldbuttonstate = 0;
 
