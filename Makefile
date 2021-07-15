@@ -8,7 +8,7 @@ LDFLAGS := -lm -lSDL
 ifneq ($(DEBUG),1)
 	CFLAGS += -O2 -funsafe-math-optimizations -funsafe-loop-optimizations -fomit-frame-pointer
 else
-	CFLAGS += -O0 -g -ggdb
+	CFLAGS += -O0 -g -ggdb -DDEBUG
 endif
 
 ifneq ($(64BIT),1)

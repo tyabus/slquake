@@ -69,7 +69,11 @@ cvar_t	teamplay = {"teamplay","0",false,true};
 cvar_t	samelevel = {"samelevel","0"};
 cvar_t	noexit = {"noexit","0",false,true};
 
+#if defined(DEBUG)
+cvar_t	developer = {"developer","1"};
+#else
 cvar_t	developer = {"developer","0"};
+#endif
 
 cvar_t	skill = {"skill","1"};						// 0 - 3
 cvar_t	deathmatch = {"deathmatch","0"};			// 0, 1, or 2
@@ -782,6 +786,14 @@ void Host_Init (quakeparms_t *parms)
 {
 	minimum_memory = MINIMUM_MEMORY;
 
+	static const char* buildtype =
+	#if defined(DEBUG)
+	"debug";
+	#else
+	"release";
+	#endif
+
+
 	host_parms = *parms;
 
 	if (parms->memsize < minimum_memory)
@@ -806,7 +818,7 @@ void Host_Init (quakeparms_t *parms)
 	NET_Init ();
 	SV_Init ();
 
-	Con_Printf ("Exe: "__TIME__" "__DATE__"\n");
+	Con_Printf ("Exe: "__TIME__" "__DATE__" %s\n", buildtype);
 	Con_Printf ("%4.1f megabyte heap\n",parms->memsize/ (1024*1024.0));
 	
 	R_InitTextures ();		// needed even for dedicated servers
