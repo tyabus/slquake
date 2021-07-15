@@ -34,8 +34,6 @@ cvar_t  cmdline = {"cmdline","0", false, true};
 
 qboolean		proghack;
 
-int             static_registered = 1;  // only for startup check, then set
-
 qboolean		msg_suppress_1 = 0;
 
 void COM_InitFilesystem (void);
@@ -997,7 +995,6 @@ void COM_CheckRegistered (void)
 	unsigned short  check[128];
 
 	COM_OpenFile("gfx/pop.lmp", &h);
-	static_registered = 0;
 
 	if (h == -1)
 	{
@@ -1011,7 +1008,6 @@ void COM_CheckRegistered (void)
 	if (h != -1)
 	{
 		Cvar_Set ("registered", "1");
-		static_registered = 1;
 		Con_Printf ("Playing registered version.\n");
 	}
 }
@@ -1384,14 +1380,7 @@ int COM_FindFile (char *filename, int *handle, FILE **file)
 				}
 		}
 		else
-		{               
-	// check a file in the directory tree
-			if (!static_registered)
-			{       // if not a registered version, don't ever go beyond base
-				if ( strchr (filename, '/') || strchr (filename,'\\'))
-					continue;
-			}
-			
+		{
 			sprintf (netpath, "%s/%s",search->filename, filename);
 			
 			findtime = Sys_FileTime (netpath);
