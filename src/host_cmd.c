@@ -262,9 +262,7 @@ void Host_Map_f (void)
 		return;
 	}
 
-	strcpy (name, Cmd_Argv(1));
-
-	if (name && !name[0])
+	if (Cmd_Argc() != 2)
 	{
 		Con_Printf ("map <levelname> : start game on a specified level\n");
 		return;
@@ -287,6 +285,8 @@ void Host_Map_f (void)
 	strcat (cls.mapstring, "\n");
 
 	svs.serverflags = 0;			// haven't completed an episode yet
+
+	strcpy(name, Cmd_Argv(1));
 
 	SV_SpawnServer (name);
 
@@ -378,14 +378,23 @@ User command to connect to server
 void Host_Connect_f (void)
 {
 	char	name[MAX_QPATH];
-	
+
+	if (Cmd_Argc() != 2)
+	{
+		Con_Printf ("connect <address:port> : connect to network game on a specified address\n");
+		return;
+	}
+
 	cls.demonum = -1;		// stop demo loop in case this fails
+
 	if (cls.demoplayback)
 	{
 		CL_StopPlayback ();
 		CL_Disconnect ();
 	}
+
 	strcpy (name, Cmd_Argv(1));
+
 	CL_EstablishConnection (name);
 	Host_Reconnect_f ();
 }
