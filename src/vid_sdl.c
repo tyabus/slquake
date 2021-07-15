@@ -7,12 +7,8 @@
 viddef_t    vid;                // global video state
 unsigned short  d_8to16table[256];
 
-// The original defaults
-//#define    BASEWIDTH    320
-//#define    BASEHEIGHT   200
-// Much better for high resolution displays
-#define    BASEWIDTH    (320*2)
-#define    BASEHEIGHT   (200*2)
+#define    BASEWIDTH    640
+#define    BASEHEIGHT   480
 
 int    VGA_width, VGA_height, VGA_rowbytes, VGA_bufferrowbytes = 0;
 byte    *VGA_pagebase;
