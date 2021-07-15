@@ -13,6 +13,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
+#include <SDL/SDL_timer.h>
 #ifndef __WIN32__
 #include <sys/ipc.h>
 #include <sys/shm.h>
