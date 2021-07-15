@@ -9,6 +9,7 @@ static int snd_inited;
 
 extern int desired_speed;
 extern int desired_bits;
+extern cvar_t nosound;
 
 static void paint_audio(void *unused, Uint8 *stream, int len)
 {
@@ -18,6 +19,27 @@ static void paint_audio(void *unused, Uint8 *stream, int len)
 		// Check for samplepos overflow?
 		S_PaintChannels (shm->samplepos);
 	}
+}
+
+// Find out why it 
+static void Snd_Restart_f(void)
+{
+	if (!snd_inited || nosound.value)
+	{
+		Con_Printf("Sound isn't initialized\n");
+		return;
+	}
+
+        S_StopAllSounds(true);
+        S_Shutdown();
+
+        Con_Printf("\nSound Restart\n");
+
+        Cache_Flush();
+        S_Startup();
+        SNDDMA_Init();
+
+        Con_Printf ("Sound sampling rate: %i\n", shm->speed);
 }
 
 qboolean SNDDMA_Init(void)
@@ -80,6 +102,11 @@ qboolean SNDDMA_Init(void)
 			break;
 	}
 	SDL_PauseAudio(0);
+
+	if (!host_initialized && !nosound.value)
+	{
+		Cmd_AddCommand ("snd_restart", Snd_Restart_f);
+	}
 
 	/* Fill the audio DMA information block */
 	shm = &the_shm;
