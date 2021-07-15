@@ -258,7 +258,17 @@ void Host_Map_f (void)
 	char	name[MAX_QPATH];
 
 	if (cmd_source != src_command)
+	{
 		return;
+	}
+
+	strcpy (name, Cmd_Argv(1));
+
+	if (name && !name[0])
+	{
+		Con_Printf ("map <levelname> : start game on a specified level\n");
+		return;
+	}
 
 	cls.demonum = -1;		// stop demo loop in case this fails
 
@@ -277,7 +287,6 @@ void Host_Map_f (void)
 	strcat (cls.mapstring, "\n");
 
 	svs.serverflags = 0;			// haven't completed an episode yet
-	strcpy (name, Cmd_Argv(1));
 
 	SV_SpawnServer (name);
 
