@@ -56,8 +56,6 @@ void    VID_Init (unsigned char *palette)
     // Set up display mode (width and height)
     vid.width = BASEWIDTH;
     vid.height = BASEHEIGHT;
-    vid.maxwarpwidth = WARP_WIDTH;
-    vid.maxwarpheight = WARP_HEIGHT;
 
     // check for command-line window size
     if ((pnum=COM_CheckParm("-winsize")))

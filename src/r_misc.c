@@ -362,7 +362,6 @@ void R_SetupFrame (void)
 {
 	int				edgecount;
 	vrect_t			vrect;
-	float			w, h;
 
 // don't allow cheats in multiplayer
 	if (cl.maxclients > 1)
@@ -424,55 +423,12 @@ void R_SetupFrame (void)
 
 	if ((r_dowarp != r_dowarpold) || r_viewchanged || lcd_x.value)
 	{
-		if (r_dowarp)
-		{
-			if ((vid.width <= vid.maxwarpwidth) &&
-				(vid.height <= vid.maxwarpheight))
-			{
-				vrect.x = 0;
-				vrect.y = 0;
-				vrect.width = vid.width;
-				vrect.height = vid.height;
+		vrect.x = 0;
+		vrect.y = 0;
+		vrect.width = vid.width;
+		vrect.height = vid.height;
 
-				R_ViewChanged (&vrect, sb_lines, vid.aspect);
-			}
-			else
-			{
-				w = vid.width;
-				h = vid.height;
-
-				if (w > vid.maxwarpwidth)
-				{
-					h *= (float)vid.maxwarpwidth / w;
-					w = vid.maxwarpwidth;
-				}
-
-				if (h > vid.maxwarpheight)
-				{
-					h = vid.maxwarpheight;
-					w *= (float)vid.maxwarpheight / h;
-				}
-
-				vrect.x = 0;
-				vrect.y = 0;
-				vrect.width = (int)w;
-				vrect.height = (int)h;
-
-				R_ViewChanged (&vrect,
-							   (int)((float)sb_lines * (h/(float)vid.height)),
-							   vid.aspect * (h / w) *
-								 ((float)vid.width / (float)vid.height));
-			}
-		}
-		else
-		{
-			vrect.x = 0;
-			vrect.y = 0;
-			vrect.width = vid.width;
-			vrect.height = vid.height;
-
-			R_ViewChanged (&vrect, sb_lines, vid.aspect);
-		}
+		R_ViewChanged (&vrect, sb_lines, vid.aspect);
 
 		r_viewchanged = false;
 	}

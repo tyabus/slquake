@@ -50,8 +50,6 @@ typedef struct
 	int				conrowbytes;
 	unsigned		conwidth;
 	unsigned		conheight;
-	int				maxwarpwidth;
-	int				maxwarpheight;
 	pixel_t			*direct;		// direct drawing to framebuffer, if not
 									//  NULL
 } viddef_t;

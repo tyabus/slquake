@@ -905,7 +905,7 @@ r_refdef must be set before the first call
 */
 void R_RenderView_ (void)
 {
-	byte	warpbuffer[WARP_WIDTH * WARP_HEIGHT];
+	byte	warpbuffer[vid.width * vid.height];
 
 	r_warpbuffer = warpbuffer;
 
