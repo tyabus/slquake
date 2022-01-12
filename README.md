@@ -1,9 +1,9 @@
 # slquake
 "Super Light" Quake source port
 
-## Packages required (ubuntu/debian)
+## Packages required (deb based distros)
 
-For i386:
+For i386 and everything else:
 libsdl1.2-dev
 
 For amd64:
