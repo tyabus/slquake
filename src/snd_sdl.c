@@ -10,6 +10,7 @@ static int snd_inited;
 extern int desired_speed;
 extern int desired_bits;
 extern cvar_t nosound;
+extern qboolean sound_started;
 
 static void paint_audio(void *unused, Uint8 *stream, int len)
 {
@@ -21,7 +22,6 @@ static void paint_audio(void *unused, Uint8 *stream, int len)
 	}
 }
 
-// Find out why it 
 static void Snd_Restart_f(void)
 {
 	if (!snd_inited || nosound.value)
@@ -30,20 +30,23 @@ static void Snd_Restart_f(void)
 		return;
 	}
 
-        S_StopAllSounds(true);
-        S_Shutdown();
+	S_StopAllSounds(true);
+	S_Shutdown();
 
-        Con_Printf("\nSound Restart\n");
+	Con_Printf("Sound Restart\n");
 
-        Cache_Flush();
-        S_Startup();
-        SNDDMA_Init();
+	Cache_Flush();
+	S_Startup();
 
-        Con_Printf ("Sound sampling rate: %i\n", shm->speed);
+	if(sound_started)
+	{
+		Con_Printf ("Sound sampling rate: %i\n", shm->speed);
+	}
 }
 
 qboolean SNDDMA_Init(void)
 {
+	static int retval;
 	SDL_AudioSpec desired, obtained;
 
 	snd_inited = 0;
@@ -70,8 +73,10 @@ qboolean SNDDMA_Init(void)
 	desired.callback = paint_audio;
 
 	/* Open the audio device */
-	if ( SDL_OpenAudio(&desired, &obtained) < 0 ) {
-        	Con_Printf("Couldn't open SDL audio: %s\n", SDL_GetError());
+	retval = SDL_OpenAudio(&desired, &obtained);
+
+	if ( retval < 0 ) {
+		Con_Printf("Couldn't open SDL audio: %s (%i)\n", SDL_GetError(), retval);
 		return 0;
 	}
 
