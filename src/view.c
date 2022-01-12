@@ -837,6 +837,9 @@ if (cl.onground && ent->origin[2] - oldz > 0)
 }
 else
 	oldz = ent->origin[2];
+
+	if (chase_active.value)
+		Chase_Update ();
 }
 
 /*

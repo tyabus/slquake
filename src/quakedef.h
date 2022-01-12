@@ -274,13 +274,17 @@ void Host_ClientCommands (char *fmt, ...);
 void Host_ShutdownServer (qboolean crash);
 
 extern qboolean		msg_suppress_1;		// suppresses resolution and cache size console output
-										//  an fullscreen DIB focus gain/loss
-extern int			current_skill;		// skill level for currently loaded level (in case
-										//  the user changes the cvar while the level is
-										//  running, this reflects the level actually in use)
-
+extern int		current_skill;		// skill level for currently loaded level (in case
 extern qboolean		isDedicated;
+extern int		minimum_memory;
 
-extern int			minimum_memory;
+//
+// chase
+//
+extern cvar_t  chase_active;
+
+void Chase_Init (void);
+void Chase_Reset (void);
+void Chase_Update (void);
 
 #endif
