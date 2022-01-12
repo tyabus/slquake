@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "quakedef.h"
 
+#include "input.h"
+
 /*
 ===============================================================================
 
@@ -54,6 +56,7 @@ kbutton_t	in_up, in_down;
 
 int			in_impulse;
 
+extern qboolean mouse_avail;
 
 void KeyDown (kbutton_t *b)
 {

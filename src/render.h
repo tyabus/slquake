@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef __REFRESH_H__
 #define __REFRESH_H__
 
+#include "vid.h"
+
 #define	MAXCLIPPLANES	11
 
 #define	TOP_RANGE		16			// soldier uniform colors

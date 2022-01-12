@@ -184,7 +184,6 @@ void	VID_UnlockBuffer (void);
 
 #include "common.h"
 #include "bspfile.h"
-#include "vid.h"
 #include "sys.h"
 #include "zone.h"
 #include "mathlib.h"
@@ -218,7 +217,6 @@ typedef struct
 #include "model.h"
 #include "d_iface.h"
 
-#include "input.h"
 #include "world.h"
 #include "keys.h"
 #include "console.h"
