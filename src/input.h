@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // input.h -- external (non-keyboard) input devices
 
+#ifndef __INPUT_H__
+#define __INPUT_H__
+
 qboolean mouse_avail;
 
 void IN_Init (void);
@@ -34,3 +37,4 @@ void IN_Move (usercmd_t *cmd);
 void IN_ClearStates (void);
 // restores all button and position states to defaults
 
+#endif

@@ -1,6 +1,7 @@
 // vid_sdl.h -- sdl video driver 
 
 #include "SDL/SDL.h"
+
 #include "quakedef.h"
 #include "d_local.h"
 
@@ -14,8 +15,6 @@ int    VGA_width, VGA_height, VGA_rowbytes, VGA_bufferrowbytes = 0;
 byte    *VGA_pagebase;
 
 static SDL_Surface *screen = NULL;
-
-extern qboolean mouse_avail;
 
 static float   mouse_x, mouse_y;
 static int mouse_oldbuttonstate = 0;

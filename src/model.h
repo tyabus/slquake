@@ -18,8 +18,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#ifndef __MODEL__
-#define __MODEL__
+#ifndef __MODEL_H__
+#define __MODEL_H__
 
 #include "modelgen.h"
 #include "spritegn.h"

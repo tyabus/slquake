@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // table of quotients and remainders for [-15...16] / [-15...16]
 
+#ifndef __ADIVTAB_H__
+#define __ADIVTAB_H__
+
 // numerator = -15
 {1, 0},
 {1, -1},
@@ -1075,3 +1078,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {1, 2},
 {1, 1},
 {1, 0},
+
+#endif

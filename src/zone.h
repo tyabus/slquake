@@ -50,7 +50,6 @@ Temp_??? Temp memory is used for file loading and surface caching.  The size
 of the cache memory is adjusted so that there is a minimum of 512k remaining
 for temp memory.
 
-
 ------ Top of Memory -------
 
 high hunk allocations
@@ -82,6 +81,9 @@ Zone block
 
 
 */
+
+#ifndef __ZONE_H__
+#define __ZONE_H__
 
 void Memory_Init (void *buf, int size);
 
@@ -127,5 +129,4 @@ void *Cache_Alloc (cache_user_t *c, int size, char *name);
 
 void Cache_Report (void);
 
-
-
+#endif

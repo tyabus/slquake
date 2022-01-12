@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // comndef.h  -- general definitions
 
+#ifndef __COMMON_H__
+#define __COMMON_H__
+
 #if !defined BYTE_DEFINED
 typedef unsigned char 		byte;
 #define BYTE_DEFINED 1
@@ -181,3 +184,5 @@ void COM_LoadCacheFile (char *path, struct cache_user_s *cu);
 extern	struct cvar_s	registered;
 
 extern qboolean		standard_quake, rogue, hipnotic;
+
+#endif

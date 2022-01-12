@@ -22,6 +22,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // the net drivers should just set the apropriate bits in m_activenet,
 // instead of having the menu code look through their internal tables
 //
+
+#ifndef __MENU_H__
+#define __MENU_H__
+
 #define	MNET_TCP		2
 
 extern	int	m_activenet;
@@ -34,4 +38,4 @@ void M_Keydown (int key);
 void M_Draw (void);
 void M_ToggleMenu_f (void);
 
-
+#endif

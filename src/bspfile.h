@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // upper design bounds
+#ifndef __BSPFILE_H__
+#define __BSPFILE_H__
 
 #define	MAX_MAP_HULLS		4
 
@@ -320,5 +322,7 @@ vec_t	FloatForKey (entity_t *ent, char *key);
 void 	GetVectorForKey (entity_t *ent, char *key, vec3_t vec);
 
 epair_t *ParseEpair (void);
+
+#endif
 
 #endif

@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // server.h
 
+#ifndef __SERVER_H__
+#define __SERVER_H__
+
 typedef struct
 {
 	int			maxclients;
@@ -224,3 +227,5 @@ void SV_CheckForNewClients (void);
 void SV_RunClients (void);
 void SV_SaveSpawnparms ();
 void SV_SpawnServer (char *server);
+
+#endif

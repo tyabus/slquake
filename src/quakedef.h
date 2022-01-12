@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // quakedef.h -- primary header for client
 
+#ifndef __QUAKEDEF_H__
+#define __QUAKEDEF_H__
+
 #define	QUAKE_GAME			// as opposed to utilities
 
 #define	VERSION			1.09
@@ -285,3 +288,5 @@ extern int			current_skill;		// skill level for currently loaded level (in case
 extern qboolean		isDedicated;
 
 extern int			minimum_memory;
+
+#endif

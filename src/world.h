@@ -19,6 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // world.h
 
+#ifndef __WORLD_H__
+#define __WORLD_H__
+
 typedef struct
 {
 	vec3_t	normal;
@@ -79,3 +82,5 @@ trace_t SV_Move (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end, int type, e
 // shouldn't be considered solid objects
 
 // passedict is explicitly excluded from clipping checks (normally NULL)
+
+#endif

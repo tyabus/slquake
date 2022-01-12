@@ -23,6 +23,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //   TYPES
 //===============
 
+#ifndef __WAD_H__
+#define __WAD_H__
+
 #define	CMP_NONE		0
 #define	CMP_LZSS		1
 
@@ -73,3 +76,5 @@ void	*W_GetLumpName (char *name);
 void	*W_GetLumpNum (int num);
 
 void SwapPic (qpic_t *pic);
+
+#endif
