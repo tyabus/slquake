@@ -869,7 +869,7 @@ void *Cache_Alloc (cache_user_t *c, int size, char *name)
 	cache_system_t	*cs;
 
 	if (c->data)
-		Sys_Error ("Cache_Alloc: allready allocated");
+		Sys_Error ("Cache_Alloc: %s is already allocated", name);
 	
 	if (size <= 0)
 		Sys_Error ("Cache_Alloc: size %i", size);
